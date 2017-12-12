@@ -1,0 +1,14 @@
+Structure: 
+{
+        "_id" : "USR1996",
+        "name" : "Sayantan",
+        "age" : 20,
+        "status" : [
+                "completed"
+        ],
+        "mapParam" : 1
+}
+
+db.apidatacollection.mapReduce(function(){ emit(this.mapParam, this.age);},	        //map Part
+			       function(key,values){return Array.sum(values)},		//reduce Part	"reduce -> multiple not supported yet"
+			       {query:{"mapParam" : 1},out: "age_total"})	        //query Part	
